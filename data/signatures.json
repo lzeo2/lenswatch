@@ -1,0 +1,177 @@
+{
+  "version": 1,
+  "updated": "2026-08-08",
+  "note": "Evidence-based BLE/WiFi signatures for camera smart glasses. Verified items are sourced; unverified marked. Research files in /home/leozhang/lenswatch-research (local) and summaries cited below.",
+  "sources": [
+    "https://github.com/sh4d0wm45k/glass-detect",
+    "https://github.com/yjeanrenaud/yj_nearbyglasses",
+    "https://github.com/FerSaiyan/Alternative-HeyCyan-App-and-SDK",
+    "https://github.com/ebowwa/HeyCyanSmartGlassesSDK",
+    "ACAB detection project signature tables + 2026-07-31 field capture",
+    "https://github.com/straff2002/OpenGlasses",
+    "IEEE OUI database"
+  ],
+  "signatures": [
+    {
+      "id": "meta-rb-glass-token",
+      "label": "Ray-Ban Meta, confirmed",
+      "type": "mfg_company_id_plus_token",
+      "companyId": 427,
+      "companyIdHex": "0x01AB",
+      "token": "META_RB_GLASS",
+      "confidence": "high",
+      "falsePositiveRisk": "low",
+      "verified": true,
+      "notes": "ACAB field capture 2026-07-31 (70 min, 1568 rows) of worn Ray-Ban/Oakley Meta glasses. Matches token in both byte orders as confidence bump."
+    },
+    {
+      "id": "luxottica-company-id",
+      "label": "Ray-Ban Meta frames (Luxottica)",
+      "type": "mfg_company_id",
+      "companyId": 3411,
+      "companyIdHex": "0x0D53",
+      "confidence": "high",
+      "falsePositiveRisk": "low",
+      "verified": true,
+      "notes": "Luxottica Group is eyewear-only registrant. Appeared zero times in the one capture; advertise-while-worn needs confirmation."
+    },
+    {
+      "id": "heycyan-service-uuid",
+      "label": "HeyCyan-class glasses (Anko/Kogan/Nilox/Temu)",
+      "type": "service_uuid_full",
+      "uuid": "7905FFF0-B5CE-4E99-A40F-4B1E122D00D0",
+      "confidence": "high",
+      "falsePositiveRisk": "low",
+      "verified": true,
+      "notes": "In vendor SDK and 3 independent projects. CRITICAL: match the full 16 bytes only; the 96-bit base is shared with Apple ANCS and a prefix match fires on every notification wearable. Also match in both byte orders if raw AD is available."
+    },
+    {
+      "id": "snap-company-id",
+      "label": "Snap Spectacles",
+      "type": "mfg_company_id",
+      "companyId": 962,
+      "companyIdHex": "0x03C2",
+      "confidence": "high",
+      "falsePositiveRisk": "low",
+      "verified": true,
+      "notes": "Snap's only BLE hardware is Spectacles."
+    },
+    {
+      "id": "vuzix-company-id",
+      "label": "Vuzix camera AR glasses",
+      "type": "mfg_company_id",
+      "companyId": 1548,
+      "companyIdHex": "0x060C",
+      "confidence": "high",
+      "falsePositiveRisk": "low",
+      "verified": true,
+      "notes": "Eyewear-only AR maker; Blade/M400/Shield/Z100 all have cameras."
+    },
+    {
+      "id": "meta-member-uuid-feb7",
+      "label": "Meta member service UUID",
+      "type": "service_uuid_16bit",
+      "uuid": "0xFEB7",
+      "confidence": "high",
+      "falsePositiveRisk": "medium",
+      "verified": true,
+      "notes": "Bluetooth SIG member_uuids.yaml, registrant Meta Platforms. Gate with Quest caveat."
+    },
+    {
+      "id": "meta-member-uuid-feb8",
+      "label": "Meta member service UUID",
+      "type": "service_uuid_16bit",
+      "uuid": "0xFEB8",
+      "confidence": "high",
+      "falsePositiveRisk": "medium",
+      "verified": true,
+      "notes": "Bluetooth SIG member_uuids.yaml, registrant Meta Platforms."
+    },
+    {
+      "id": "snap-member-uuid-fe45",
+      "label": "Snap Spectacles member UUID",
+      "type": "service_uuid_16bit",
+      "uuid": "0xFE45",
+      "confidence": "high",
+      "falsePositiveRisk": "medium",
+      "verified": true,
+      "notes": "Bluetooth SIG registry."
+    },
+    {
+      "id": "meta-corporate-company-id",
+      "label": "Meta corporate company ID (possible glasses)",
+      "type": "mfg_company_id",
+      "companyId": 427,
+      "companyIdHex": "0x01AB",
+      "confidence": "medium",
+      "falsePositiveRisk": "medium-high",
+      "verified": true,
+      "notes": "One capture confirmed it on worn glasses, but it is a corporate ID shared across Meta devices."
+    },
+    {
+      "id": "meta-tech-company-id",
+      "label": "Meta Technologies company ID (gate it)",
+      "type": "mfg_company_id",
+      "companyId": 1422,
+      "companyIdHex": "0x058E",
+      "confidence": "medium",
+      "falsePositiveRisk": "high",
+      "verified": true,
+      "notes": "Shared with Meta Quest; only meaningful combined with META_RB_GLASS token. Never match bare."
+    },
+    {
+      "id": "jieli-company-id",
+      "label": "Jieli audio SoC (possible cheap glasses)",
+      "type": "mfg_company_id",
+      "companyId": 1494,
+      "companyIdHex": "0x05D6",
+      "confidence": "low",
+      "falsePositiveRisk": "very high",
+      "verified": true,
+      "notes": "Bluetooth AUDIO SoC vendor; matches a huge population of cheap earbuds and speakers. Must show as possible only (e.g. Rogbird VisionPro, Rollme VistaView)."
+    },
+    {
+      "id": "tcl-company-id",
+      "label": "TCL / RayNeo glasses",
+      "type": "mfg_company_id",
+      "companyId": 3014,
+      "companyIdHex": "0x0BC6",
+      "confidence": "medium",
+      "falsePositiveRisk": "high",
+      "verified": true,
+      "notes": "TCL phones/tablets/TVs also use it. Gate it."
+    },
+    {
+      "id": "name-regex",
+      "label": "Device name patterns",
+      "type": "name_regex",
+      "regex": "(?i)(ray-*ban|heycyan|myvu|starair|memomind|even g2)|^[OQ]_",
+      "confidence": "medium",
+      "falsePositiveRisk": "medium",
+      "verified": true,
+      "notes": "Strong during pairing only; Meta glasses rarely advertise names in the field. 'Meta' alone can collide with other Meta gadgets."
+    },
+    {
+      "id": "even-g2-uuid",
+      "label": "Meta Ray-Ban Display (Even G2)",
+      "type": "service_uuid_full",
+      "uuid": "00002760-08C2-11E1-9073-0E8AC72E5401",
+      "confidence": "low",
+      "falsePositiveRisk": "low",
+      "verified": false,
+      "notes": "Community-reconstructed from OpenGlasses transport code. Needs field capture."
+    }
+  ],
+  "ouiNotes": "OUI/MAC-prefix matching is USELESS for Meta glasses (resolvable private addresses rotate). For cheap glasses it is medium-strength at best (chipset OUIs shared with earbuds). The popular community 'Meta OUI' list (7C:2A:9E, CC:66:0A, F4:03:43, 5C:E9:1E) is WRONG: CC:66:0A and 5C:E9:1E are Apple, F4:03:43 is HPE. Verified relevant OUIs: 98:59:49 Luxottica; Meta Platforms: 48:05:60, 50:99:03, 78:C4:FA, 80:F3:EF, 84:57:F7, 88:25:08, 94:F9:29, B4:17:A8, C0:DD:8A, CC:A1:74, D0:B3:C2, D4:D6:59 (Quest-shared); F4:4E:FD Actions Semiconductor (cheap camera glasses chip); C8:47:8C, 70:87:9E Beken; 00:E0:4C, FC:93:4E Realtek; D4:8A:FC, E4:65:B8 Espressif; C4:19:D1, 38:22:28 Telink; C8:58:6A, 28:6D:CD Beijing Winner Micro.",
+  "wifiNotes": "HeyCyan-class glasses use WiFi hotspot for media transfer (BLE sends SSID+password at runtime; gateway probed at 192.168.43.1 / 192.168.4.1 / 192.168.1.1 / 192.168.0.1 / 10.0.0.1; manifest at http://IP/manifest.json; default password fallback 123456789). No fixed Anko_xxxx SSID documented. A PHONE cannot sniff probe requests (platform limit) - only the ESP32 accessory in monitor mode can. Phone can only see beaconing APs.",
+  "gaps": [
+    "Exact BLE advertising name of Kmart Anko, Kogan, Dick Smith, Woolworths, Temu camera glasses. ZERO public documentation. Hypothesis from decompiled SDK: names start with O_ or Q_ or contain cyan, unverified.",
+    "Do HeyCyan-class devices advertise the 7905FFF0 service UUID persistently while worn? Never observed in captures yet.",
+    "META_RB_GLASS token byte framing on the wire (only both-byte-order matching so far).",
+    "Advertise-while-worn confirmation for Luxottica 0x0D53, Meta corp 0x01AB, Meta Tech 0x058E.",
+    "Meta Ray-Ban Stories (pre-Meta-AI generation) BLE behavior is undocumented.",
+    "Even G2 UUIDs need a real field capture.",
+    "WiFi hotspot SSID format for Anko/Kogan glasses (random or brand-prefixed?).",
+    "Essilor 0x0D53 ownership detail (Oakley and some newer Meta models likely)."
+  ]
+}
